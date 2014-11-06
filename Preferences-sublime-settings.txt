@@ -1,7 +1,7 @@
 {
 	"always_prompt_for_file_reload": false,
 	"always_show_minimap_viewport": false,
-	"animation_enabled": false,
+	"animation_enabled": true,
 	"atomic_save": true,
 	"auto_close_tags": true,
 	"auto_complete": false,
@@ -37,10 +37,10 @@
 		"*.zip"
 	],
 	"bold_folder_labels": true,
-	"caret_extra_bottom": 0,
-	"caret_extra_top": 0,
-	"caret_extra_width": 0,
-	"caret_style": "phase",
+	"caret_extra_bottom": 2,
+	"caret_extra_top": 2,
+	"caret_extra_width": 4,
+	"caret_style": "solid",
 	"close_windows_when_empty": true,
 	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
 	"copy_with_empty_selection": true,
@@ -97,7 +97,7 @@
 	[
 		""
 	],
-	"font_size": 14,
+	"font_size": 15,
 	"gpu_window_buffer": "auto",
 	"gutter": true,
 	"highlight_line": true,
@@ -109,7 +109,8 @@
 	],
 	"indent_guide_options":
 	[
-		"draw_normal"
+		"draw_normal",
+		"draw_active"
 	],
 	"indent_subsequent_lines": true,
 	"indent_to_bracket": true,
@@ -123,7 +124,7 @@
 	"line_padding_top": 1,
 	"margin": 4,
 	"match_brackets": true,
-	"match_brackets_angle": false,
+	"match_brackets_angle": true,
 	"match_brackets_braces": true,
 	"match_brackets_content": true,
 	"match_brackets_square": true,
@@ -138,7 +139,7 @@
 	"rulers":
 	[
 	],
-	"save_on_focus_lost": false,
+	"save_on_focus_lost": true,
 	"scroll_past_end": true,
 	"scroll_speed": 1.0,
 	"shift_tab_unindent": false,
@@ -150,14 +151,14 @@
 	"smart_indent": true,
 	"spacegray_tabs_font_normal": true,
 	"spell_check": false,
-	"tab_completion": true,
-	"tab_size": 4,
+	"tab_completion": false,
+	"tab_size": 2,
 	"theme": "Default.sublime-theme",
 	"translate_tabs_to_spaces": false,
 	"tree_animation_enabled": true,
 	"trim_automatic_white_space": true,
 	"trim_trailing_white_space_on_save": false,
-	"use_simple_full_screen": false,
+	"use_simple_full_screen": true,
 	"use_tab_stops": true,
 	"word_separators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?",
 	"word_wrap": "true",
