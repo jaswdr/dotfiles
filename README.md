@@ -1,4 +1,2 @@
-sublime-text-user-settings
+Setup PHP Enviornment
 ========================
-
-User configuration file from sublime text editor
