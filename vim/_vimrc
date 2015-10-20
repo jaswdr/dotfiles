@@ -1,43 +1,113 @@
+" 
+" My .vimrc File (_vimrc on Windows) 
+"
+" License: MIT
+" Author: Jonathan A. Schweder
+" Email: jonathanschweder@gmail.com
+"
+
+" Vundle {{{
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
 set rtp+=~/vimfiles/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/vimfiles/')
+call vundle#begin('~/vimfiles/')
 
-" let Vundle manage Vundle, required
+" Vundle
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
+" 3rd party plugins
 Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
+Plugin 'sjl/badwolf'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-surround'
+Plugin 'kien/ctrlp.vim'
 Plugin 'L9'
-" Git plugin not hosted on GitHub
 Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-Plugin 'user/L9', {'name': 'newL9'}
 
-" All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+" }}}
 
+" Colors {{{
+syntax enable           " enable syntax processing
+colorscheme badwolf
+" }}}
+
+" Misc {{{
+set ttyfast                     " faster redraw
+set backspace=indent,eol,start
+" }}}
+
+" Spaces & Tabs {{{
+set tabstop=4           " 4 space tab
+set expandtab           " use spaces for tabs
+set softtabstop=4       " 4 space tab
+set shiftwidth=4
+set modelines=1
+filetype indent on
+filetype plugin on
+set autoindent
+" }}}
+
+" UI Layout {{{
+set number              " show line numbers
+set showcmd             " show command in bottom bar
+set nocursorline        " highlight current line
+set wildmenu
+set lazyredraw
+set showmatch           " higlight matching parenthesis
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+set guifont=Source_Code_Pro:h14
+" }}}
+
+" Searching {{{
+set ignorecase          " ignore case when searching
+set incsearch           " search as characters are entered
+set hlsearch            " highlight all matches
+" }}}
+
+" Folding {{{
+"=== folding ===
+set foldmethod=indent   " fold based on indent level
+set foldnestmax=10      " max 10 depth
+set foldenable          " don't fold files by default on open
+nnoremap <space> za
+set foldlevelstart=10    " start with fold level of 1
+" }}}
+
+" Leader Shortcuts {{{
+let mapleader=","
+nnoremap <c-e> :NERDTreeToggle<CR>
+nnoremap <c-f> :NERDTreeFind<CR>
+nnoremap <c-p> :CtrlPBuffer<CR>
+"}}}
+
+" Others Shortcuts {{{
+map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR> 
+" }}}
+
+" Plugins Configurations {{{
+
+" CtrlP {{{
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_by_filename = 1
+" }}}
+
+" Syntastic {{{
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+"}}}
+
+" }}}
