@@ -17,14 +17,12 @@ call vundle#begin('~/vimfiles/')
 Plugin 'VundleVim/Vundle.vim'
 
 " 3rd party plugins
-Plugin 'tpope/vim-fugitive'
+Plugin 'L9'
 Plugin 'sjl/badwolf'
-Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
-Plugin 'L9'
-Plugin 'git://git.wincent.com/command-t.git'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
