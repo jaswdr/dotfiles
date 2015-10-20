@@ -67,7 +67,7 @@ set guioptions-=L  "remove left-hand scroll bar
 " Searching {{{
 set ignorecase          " ignore case when searching
 set incsearch           " search as characters are entered
-set hlsearch            " highlight all matches
+set nohlsearch
 " }}}
 
 " Folding {{{
