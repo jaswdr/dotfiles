@@ -12,6 +12,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'bling/vim-airline'
+Plugin 'mattn/emmet-vim'
+Plugin 'Shougo/neocomplcache.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -24,6 +26,18 @@ colorscheme badwolf
 " Misc {{{
 set ttyfast                     " faster redraw
 set backspace=indent,eol,start
+set guifont=Source_Code_Pro:h14
+
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+  set encoding=utf-8
+  setglobal fileencoding=utf-8
+  "setglobal bomb
+  set fileencodings=ucs-bom,utf-8,latin1
+endif
+
 " }}}
 
 " Spaces & Tabs {{{
@@ -48,7 +62,6 @@ set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
-set guifont=Source_Code_Pro:h14
 " }}}
 
 " Searching {{{
@@ -72,6 +85,7 @@ nnoremap <c-e> :NERDTreeToggle<CR>
 nnoremap <c-f> :NERDTreeFind<CR>
 nnoremap <c-p> :CtrlPBuffer<CR>
 nmap <c-t> :TagbarToggle<CR>
+inoremap <Nul> <C-p>
 "}}}
 
 " Others Shortcuts {{{
@@ -96,5 +110,16 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 "}}}
+
+" Emmet {{{
+let g:user_emmet_leader_key='<C-Z>'
+let g:user_emmet_install_global = 0
+let g:user_emmet_mode='a'
+autocmd FileType html,css EmmetInstall
+" }}}
+
+" NeoComplCache {{{
+let g:neocomplcache_enable_at_startup = 1
+" }}}
 
 " }}}
