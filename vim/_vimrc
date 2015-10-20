@@ -1,22 +1,9 @@
-" 
-" My .vimrc File (_vimrc on Windows) 
-"
-" License: MIT
-" Author: Jonathan A. Schweder
-" Email: jonathanschweder@gmail.com
-"
-
-" Vundle {{{
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
 set rtp+=~/vimfiles/bundle/Vundle.vim
 call vundle#begin('~/vimfiles/')
-
-" Vundle
 Plugin 'VundleVim/Vundle.vim'
 
-" 3rd party plugins
 Plugin 'L9'
 Plugin 'sjl/badwolf'
 Plugin 'tpope/vim-fugitive'
@@ -26,7 +13,6 @@ Plugin 'kien/ctrlp.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
-" }}}
 
 " Colors {{{
 syntax enable           " enable syntax processing
