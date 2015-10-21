@@ -26,8 +26,9 @@ colorscheme badwolf
 " Misc {{{
 set ttyfast                     " faster redraw
 set backspace=indent,eol,start
-set guifont=Source_Code_Pro:h14
+set guifont=Consolas:h14
 
+" set default UTF-8 file encode
 if has("multi_byte")
   if &termencoding == ""
     let &termencoding = &encoding
