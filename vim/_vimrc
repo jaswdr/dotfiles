@@ -26,9 +26,8 @@ colorscheme badwolf
 " Misc {{{
 set ttyfast                     " faster redraw
 set backspace=indent,eol,start
-set guifont=Consolas:h14
+set guifont=Source_Code_Pro:h12
 
-" set default UTF-8 file encode
 if has("multi_byte")
   if &termencoding == ""
     let &termencoding = &encoding
@@ -66,6 +65,7 @@ set guioptions-=L  "remove left-hand scroll bar
 " }}}
 
 " Searching {{{
+map <F4> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 set ignorecase          " ignore case when searching
 set incsearch           " search as characters are entered
 set nohlsearch
@@ -78,6 +78,10 @@ set foldnestmax=10      " max 10 depth
 set foldenable          " don't fold files by default on open
 nnoremap <space> za
 set foldlevelstart=10    " start with fold level of 1
+inoremap <F9> <C-O>za
+nnoremap <F9> za
+onoremap <F9> <C-C>za
+vnoremap <F9> zf
 " }}}
 
 " Leader Shortcuts {{{
@@ -85,15 +89,30 @@ let mapleader=","
 nnoremap <c-e> :NERDTreeToggle<CR>
 nnoremap <c-f> :NERDTreeFind<CR>
 nnoremap <c-p> :CtrlPBuffer<CR>
-nnoremap <c-z> :u<CR>
 nnoremap <c-s> :w<CR>
-nnoremap <c-l> :vsplit<CR>
+inoremap <c-s> <Esc>:w<CR>
 nnoremap <c-a> ggVG<CR>
-nnoremap y "+y
-vnoremap y "+y
-nmap <c-t> :TagbarToggle<CR>
 inoremap <Nul> <C-p>
+nnoremap <c-f> :TagbarToggle<CR>
+inoremap <c-f> <Esc>:TagbarToggle<CR>
+
+" Tab control
+nnoremap <C-t>     :vsp<CR>
+inoremap <C-t>     <Esc>:vsp<CR>
+
+" normal copy/paste
+vmap <C-c> y<Esc>i
+vmap <C-x> d<Esc>i
+imap <C-v> <Esc>pi
+imap <C-y> <Esc>ddi
+map <C-z> <Esc>
+imap <C-z> <Esc>ui
 "}}}
+
+" splits {{{
+set splitbelow
+set splitright
+" }}}
 
 " Others Shortcuts {{{
 map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR> 
