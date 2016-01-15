@@ -5,23 +5,26 @@ call vundle#begin('~/vimfiles/')
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'L9'
-Plugin 'sjl/badwolf'
-Plugin 'tpope/vim-fugitive'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
-Plugin 'bling/vim-airline'
 Plugin 'mattn/emmet-vim'
 Plugin 'Shougo/neocomplcache.vim'
 Plugin 'ervandew/supertab'
+<<<<<<< HEAD
+Plugin 'scrooloose/syntastic'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'bronson/vim-trailing-whitespace'
+=======
+>>>>>>> 89852c8b69573dd6c7631762416fa2639ca40731
 
-call vundle#end()            " required
-filetype plugin indent on    " required
+call vundle#end() " required
+filetype plugin indent on  " required
 
 " Colors {{{
-syntax enable           " enable syntax processing
-colorscheme badwolf
+syntax enable " enable syntax processing
+colorscheme solarized
 " }}}
 
 " Misc {{{
@@ -42,31 +45,30 @@ endif
 " }}}
 
 " Spaces & Tabs {{{
-set tabstop=4           " 4 space tab
-set expandtab           " use spaces for tabs
-set softtabstop=4       " 4 space tab
+set tabstop=4     " 4 space tab
+set expandtab     " use spaces for tabs
+set softtabstop=4 " 4 space tab
 set shiftwidth=4
 set modelines=1
+set autoindent
 filetype indent on
 filetype plugin on
-set autoindent
 " }}}
 
 " UI Layout {{{
-set number              " show line numbers
-set showcmd             " show command in bottom bar
-set nocursorline        " highlight current line
-set wildmenu
-set lazyredraw
-set showmatch           " higlight matching parenthesis
+set number         " show line numbers
+set showcmd        " show command in bottom bar
+set nocursorline   " highlight current line
+set showmatch      " higlight matching parenthesis
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
+set wildmenu
+set lazyredraw
 " }}}
 
 " Searching {{{
-map <F4> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 set ignorecase          " ignore case when searching
 set incsearch           " search as characters are entered
 set nohlsearch
@@ -74,41 +76,52 @@ set nohlsearch
 
 " Folding {{{
 "=== folding ===
-set foldmethod=indent   " fold based on indent level
-set foldnestmax=10      " max 10 depth
-set foldenable          " don't fold files by default on open
+set foldmethod=indent " fold based on indent level
+set foldnestmax=10    " max 10 depth
+set foldlevelstart=10 " start with fold level of 1
+set foldenable        " don't fold files by default on open
 nnoremap <space> za
-set foldlevelstart=10    " start with fold level of 1
-inoremap <F9> <C-O>za
-nnoremap <F9> za
-onoremap <F9> <C-C>za
-vnoremap <F9> zf
 " }}}
 
-" Leader Shortcuts {{{
+" Shortcuts {{{
 let mapleader=","
 nnoremap <c-e> :NERDTreeToggle<CR>
-nnoremap <c-f> :NERDTreeFind<CR>
 nnoremap <c-p> :CtrlPBuffer<CR>
-nnoremap <c-s> :w<CR>
-inoremap <c-s> <Esc>:w<CR>
-nnoremap <c-a> ggVG<CR>
-inoremap <Nul> <C-p>
-nnoremap <c-f> :TagbarToggle<CR>
-inoremap <c-f> <Esc>:TagbarToggle<CR>
+nnoremap <F4> :TagbarToggle<CR>
+inoremap <F4> <Esc>:TagbarToggle<CR>
+
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+set mouse=a
+set nu
+
+:map <C-a> GVgg
+:map <C-n> :enew
+:map <C-o> :e . <Enter>
+:map <C-s> :w <Enter>
+:map <C-c> y
+:map <C-v> p
+:map <C-x> d
+:map <C-z> u
+:map <C-t> :tabnew <Enter>
+:map <C-i> >>
+:map <C-w> :close <Enter>
+:map <C-W> :q! <Enter>
+:map <C-f> /
+:map <F3> n
+:map <C-h> :%s/
+:map <S-t> vat
+:map <S-T> vit
+:map <S-{> vi{
+:map <S-(> vi(
+:map <S-[> vi[
 
 " Tab control
-nnoremap <C-t>     :vsp<CR>
-inoremap <C-t>     <Esc>:vsp<CR>
-
-" normal copy/paste
-vmap <C-c> y<Esc>i
-vmap <C-x> d<Esc>i
-imap <C-v> <Esc>pi
-imap <C-y> <Esc>ddi
-map <C-z> <Esc>
-imap <C-z> <Esc>ui
-"}}}
+nnoremap <C-t> :vsp<CR>
+inoremap <C-t> <Esc>:vsp<CR>
 
 " splits {{{
 set splitbelow
@@ -130,15 +143,25 @@ let g:ctrlp_cmd = 'CtrlP'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" PHP
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+
 "}}}
 
 " NeoComplCache {{{
 let g:neocomplcache_enable_at_startup = 1
+" }}}
+
+" Emmet {{{
+let g:user_emmet_mode='a' "enable all function in all mode.
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+let g:user_emmet_leader_key=','
 " }}}
 
 " }}}
