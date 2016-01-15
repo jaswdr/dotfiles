@@ -12,12 +12,9 @@ Plugin 'majutsushi/tagbar'
 Plugin 'mattn/emmet-vim'
 Plugin 'Shougo/neocomplcache.vim'
 Plugin 'ervandew/supertab'
-<<<<<<< HEAD
 Plugin 'scrooloose/syntastic'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'bronson/vim-trailing-whitespace'
-=======
->>>>>>> 89852c8b69573dd6c7631762416fa2639ca40731
 
 call vundle#end() " required
 filetype plugin indent on  " required
