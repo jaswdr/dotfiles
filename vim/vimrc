@@ -22,17 +22,17 @@ filetype plugin indent on  " required
 
 " Colors {{{
 syntax enable " enable syntax processing
-colorscheme murphy
+set background=dark
+colorscheme solarized
 " }}}
 
 " Misc {{{
 set ttyfast                     " faster redraw
 set backspace=indent,eol,start
-set guifont=Source_Code_Pro:h12
+set guifont=UbuntuMono\ 14
 
 if has("multi_byte")
-  if &termencoding == ""
-    let &termencoding = &encoding
+  if &termencoding == "    let &termencoding = &encoding
   endif
   set encoding=utf-8
   setglobal fileencoding=utf-8
