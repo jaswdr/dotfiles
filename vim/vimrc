@@ -15,28 +15,33 @@ Plugin 'Shougo/neocomplcache.vim'
 Plugin 'ervandew/supertab'
 Plugin 'scrooloose/syntastic'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'nathanaelkane/vim-indent-guides'
 
-call vundle#end() " required
-filetype plugin indent on  " required
+call vundle#end()         " required
+filetype plugin indent on " required
 
 " Colors {{{
-syntax enable " enable syntax processing
-set background=dark
+syntax enable        " enable syntax processing
+set background=light " background light|dark
 colorscheme solarized
 " }}}
 
 " Misc {{{
-set ttyfast                     " faster redraw
+set ttyfast "faster redraw
 set backspace=indent,eol,start
 set guifont=UbuntuMono\ 14
+set clipboard=unnamedplus
 
 if has("multi_byte")
-  if &termencoding == "    let &termencoding = &encoding
+  if &termencoding == ""
+      let &termencoding = &encoding
   endif
   set encoding=utf-8
   setglobal fileencoding=utf-8
-  "setglobal bomb
   set fileencodings=ucs-bom,utf-8,latin1
 endif
 
@@ -55,8 +60,7 @@ filetype plugin on
 
 " UI Layout {{{
 set number         " show line numbers
-set showcmd        " show command in bottom bar
-set nocursorline   " highlight current line
+set cursorline     " highlight current line
 set showmatch      " higlight matching parenthesis
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
@@ -67,8 +71,8 @@ set lazyredraw
 " }}}
 
 " Searching {{{
-set ignorecase          " ignore case when searching
-set incsearch           " search as characters are entered
+set ignorecase      " ignore case when searching
+set incsearch       " search as characters are entered
 set nohlsearch
 " }}}
 
@@ -99,12 +103,10 @@ set nu
 :map <C-a> GVgg
 :map <C-n> :enew
 :map <C-o> :e . <Enter>
-:map <C-s> :w <Enter>
 :map <C-c> y
 :map <C-v> p
 :map <C-x> d
 :map <C-z> u
-:map <C-t> :tabnew <Enter>
 :map <C-i> >>
 :map <C-w> :close <Enter>
 :map <C-W> :q! <Enter>
@@ -116,7 +118,8 @@ set nu
 :map <S-{> vi{
 :map <S-(> vi(
 :map <S-[> vi[
-:map <C-S> <CR>:w
+:map <C-s> <Esc>:w <CR>
+inoremap <C-s> <c-o>:w<CR>
 
 " Alt + Arrow Key move {{{
 nmap <silent> <A-Up> :wincmd k<CR>
@@ -126,16 +129,12 @@ nmap <silent> <A-Right> :wincmd l<CR>
 "}}}
 
 " Tab control
-nnoremap <C-t> :vsp<CR>
-inoremap <C-t> <Esc>:vsp<CR>
+nnoremap <C-t> :sp<CR>
+inoremap <C-t> <Esc>:sp<CR>
 
 " splits {{{
 set splitbelow
 set splitright
-" }}}
-
-" Others Shortcuts {{{
-map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR> 
 " }}}
 
 " Plugins Configurations {{{
@@ -153,21 +152,36 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
-" PHP
-let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
-
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd'] " php checkers
 "}}}
 
 " NeoComplCache {{{
-let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_at_startup = 1 " enable on open file
 " }}}
 
 " Emmet {{{
-let g:user_emmet_mode='a' "enable all function in all mode.
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
-let g:user_emmet_leader_key=','
+let g:user_emmet_mode='a'              " enable all function in all mode.
+let g:user_emmet_install_global = 0    " install Emmet in all modes
+autocmd FileType html,css EmmetInstall " enable on html and css files
+let g:user_emmet_leader_key=','        " leader key
 " }}}
+
+" Airline {{{
+let g:airline#extensions#tabline#enabled = 1
+let laststatus=2
+"}}}
+
+" Ultisnips {{{
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"}}}
+
+" Indent guides {{{
+set ts=2 sw=2 et
+let g:indent_guides_start_level=2
+let g:indent_guides_indent_levels = 30
+let g:indent_guides_auto_colors = 1
+"}}}
 
 " }}}
