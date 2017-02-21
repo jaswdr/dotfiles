@@ -3,24 +3,14 @@ filetype plugin on
 
 " Colors {{{
 syntax enable
-set background=dark
+set background=light
 " }}}
 
 " Misc {{{
 set ttyfast
 set backspace=indent,eol,start
-set guifont=UbuntuMono\ 14
 set clipboard=unnamedplus
-
-if has("multi_byte")
-  if &termencoding == ""
-      let &termencoding = &encoding
-  endif
-  set encoding=utf-8
-  setglobal fileencoding=utf-8
-  set fileencodings=ucs-bom,utf-8,latin1
-endif
-
+set nobackup
 " }}}
 
 " Spaces & Tabs {{{
@@ -45,10 +35,11 @@ set lazyredraw
 " }}}
 
 " Searching {{{
+set path+=**
 set ignorecase
 set incsearch
 set nohlsearch
-" }}}
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/.git/*,*/.hg/*,*/node_modules/*,*/bower_components/*,*/vendor/*
 
 " Folding {{{
 "=== folding ===
@@ -60,25 +51,28 @@ nnoremap <space> za
 " }}}
 
 " Shortcuts {{{
-:map <C-a> GVgg
-:map <C-n> :enew
-:map <C-c> y
-:map <C-v> p
-:map <C-x> d
-:map <C-z> u
-:map <C-i> >>
-:map <C-w> :close <Enter>
-:map <C-W> :q! <Enter>
-:map <C-f> /
-:map <F3> n
-:map <C-h> :%s/
-:map <S-t> vat
-:map <S-T> vit
-:map <S-{> vi{
-:map <S-(> vi(
-:map <S-[> vi[
-:map <C-s> <Esc>:w <CR>
-inoremap <C-s> <c-o>:w<CR>
+map <C-a> GVgg
+map <C-n> :enew <Enter>
+map <C-c> y
+map <C-v> p
+map <C-x> d
+map <C-z> u
+map <C-i> >>
+map <C-w> :close <Enter>
+map <C-W> :q! <Enter>
+map <C-f> /
+map <F3> n
+map <C-h> :%s/
+map <C-s> <Esc>:w <CR>
+inoremap <C-s> <c-o>:w <CR>
+" }}
+
+" Arrows movement
+"noremap j h
+"noremap k j
+"noremap i k
+"noremap j k
+"noremap k j
 " }}}
 
 " Alt + Arrow Key move {{{
@@ -86,6 +80,11 @@ nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>
 nmap <silent> <A-Left> :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
+
+nmap <silent> <A-k> :wincmd k<CR>
+nmap <silent> <A-j> :wincmd j<CR>
+nmap <silent> <A-h> :wincmd h<CR>
+nmap <silent> <A-l> :wincmd l<CR>
 "}}}
 
 " Tab control
