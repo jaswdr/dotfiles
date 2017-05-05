@@ -1,16 +1,22 @@
 filetype indent on
 filetype plugin on
 
-call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree'
-Plug 'kien/ctrlp.vim'
-Plug 'mattn/emmet-vim'
-Plug 'raimondi/delimitmate'
-Plug 'bronson/vim-trailing-whitespace'
-Plug 'honza/vim-snippets'
-Plug 'sirver/ultisnips'
-Plug 'ervandew/supertab'
-call plug#end()
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'raimondi/delimitmate'
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'honza/vim-snippets'
+Plugin 'sirver/ultisnips'
+Plugin 'ervandew/supertab'
+Plugin 'terryma/vim-multiple-cursors'
+
+call vundle#end()
 
 let g:user_emmet_leader_key=','
 let g:UltiSnipsExpandTrigger="<c-n>"
@@ -18,16 +24,17 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " Colors {{{
-syntax enable
+"syntax enable
 set background=light
 " }}}
 
 " Misc {{{
 set ttyfast
 set backspace=indent,eol,start
-set guifont=Source\ Code\ Pro\ 14
+"set guifont=Source\ Code\ Pro\ 14
 set clipboard=unnamedplus
-set nobackup
+set swapfile
+set dir=~/.tmp
 " }}}
 
 " Spaces & Tabs {{{
@@ -80,29 +87,14 @@ map <C-w> :close <Enter>
 map <C-W> :q! <Enter>
 map <C-f> /
 map <F3> n
-map <C-h> :%s/
-map <C-s> <Esc>:w <CR>
 inoremap <C-s> <c-o>:w <CR>
 " }}
 
-" Arrows movement
-"noremap j h
-"noremap k j
-"noremap i k
-"noremap j k
-"noremap k j
-" }}}
-
 " Alt + Arrow Key move {{{
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
-
-nmap <silent> <A-k> :wincmd k<CR>
-nmap <silent> <A-j> :wincmd j<CR>
-nmap <silent> <A-h> :wincmd h<CR>
-nmap <silent> <A-l> :wincmd l<CR>
+nmap <C-k> :wincmd k<CR>
+nmap <C-j> :wincmd j<CR>
+nmap <C-h> :wincmd h<CR>
+nmap <C-l> :wincmd l<CR>
 "}}}
 
 " Tab control
@@ -112,4 +104,14 @@ inoremap <C-t> <Esc>:sp<CR>
 " splits {{{
 set splitbelow
 set splitright
+" }}}
+
+" {{{
+let g:multi_cursor_use_default_mapping=0
+"
+" Default mapping
+let g:multi_cursor_next_key='<C-d>'
+let g:multi_cursor_prev_key='<C-n>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
 " }}}
