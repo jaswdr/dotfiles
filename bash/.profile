@@ -10,9 +10,10 @@ export GOROOT_BOOTSTRAP=$SRC_PATH/jaswdr/go1.4
 export GOPATH=$SRC_PATH/jaswdr/gopath
 export PATH=$PATH:$SRC_PATH/jaswdr/go/bin:$SRC_PATH/jaswdr/gopath/bin:$SRC_PATH/jaswdr/node/bin:$SRC_PATH/jaswdr/firefox:$SRC_PATH/jaswdr/alacritty/target/release:$SRC_PATH/node/bin
 export GITHUB_TOKEN=// your github token
+export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(vim {})+abort'"
 
 export EDITOR=vim
-alias vim=vim
+alias vi=vim
 
 # User specific aliases and functions
 alias docker="sudo docker"
@@ -23,6 +24,13 @@ alias gosrc="cd $GOPATH/src/github.com/"
 alias gd="go doc"
 alias godoc="go doc"
 alias grep="grep -rn --exclude-dir=vendor"
+alias note="geeknote"
+alias cat="bat --theme=Github"
+alias ping="prettyping --nolegend"
+alias fzf="fzf --preview 'bat --color \"never\" {}'"
+alias top="htop"
+alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules --exclude vendor"
+alias fl="flameshot gui"
 
 # Run new docker container with common binds
 function dkr()
@@ -125,6 +133,24 @@ function seabuild() {
 # Usage: replace OLD NEW
 function replace() {
     sed -i -e "s/$1/$2/g" $(find . -type f)
+}
+
+# Edit all modified files
+# Usage: ediff
+function ediff() {
+    vim -p `git status --porcelain | sed -ne 's/^ M //p'`
+}
+
+# Search and edit all files
+# Usage: efind foo*.bar
+function efind() {
+    find . -name $1 -exec vim {} +
+}
+
+# Search content and edit all files
+# Usage: eegrep func main()
+function eegrep() {
+    vim $(grep -rIl $1)
 }
 
 # Run new Jupyter notebook using current directory as workdir
