@@ -5,11 +5,9 @@ export SYSTEMD_PAGER=
 export PS1="[\W] \\$ \[$(tput sgr0)\]"
 
 # Environment variables
-export SRC_PATH=/home/jaswdr/Source
-export GOROOT_BOOTSTRAP=$SRC_PATH/jaswdr/go1.4
-export GOPATH=$SRC_PATH/jaswdr/gopath
-export PATH=$PATH:$SRC_PATH/jaswdr/go/bin:$SRC_PATH/jaswdr/gopath/bin:$SRC_PATH/jaswdr/node/bin:$SRC_PATH/jaswdr/firefox:$SRC_PATH/jaswdr/alacritty/target/release:$SRC_PATH/node/bin
-export GITHUB_TOKEN=// your github token
+export SRC_PATH=/home/jaswdr
+export GOPATH=$SRC_PATH
+export PATH=$PATH:$SRC_PATH/go/bin:$GOPATH/bin
 export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(vim {})+abort'"
 
 export EDITOR=vim
@@ -23,7 +21,6 @@ alias dk="docker"
 alias gosrc="cd $GOPATH/src/github.com/"
 alias gd="go doc"
 alias godoc="go doc"
-alias grep="grep -rn --exclude-dir=vendor"
 alias note="geeknote"
 alias cat="bat --theme=Github"
 alias ping="prettyping --nolegend"

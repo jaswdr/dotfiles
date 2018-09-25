@@ -1,12 +1,11 @@
 filetype plugin indent on
 
-set rtp+=~/.vim/bundle/Vundle.vim
-
+set rtp+=~/.vim/bundle/Vundle.vim 
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'fatih/vim-go'
 Plugin 'wakatime/vim-wakatime'
+Plugin 'scrooloose/nerdtree'
 call vundle#end()
 
 " Fast scroll rendering
@@ -71,26 +70,12 @@ set noignorecase
 set incsearch
 
 " Disable highlighting when searching
-set nohlsearch
+set hlsearch
+hi Search ctermbg=LightYellow
 
 " Ignore directories when searching
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/.git/*,*/.hg/*,*/vendor/*,*/bower_components/*,*/node_modules/*
 " }}}
-
-" View current directory
-map <C-e> <Esc>:Vexplore .<CR>
-
-" Remove netrw banner
-let g:netrw_banner = 0
-
-" Configure netrw style (VIM defaults filebrowser)
-let g:netrw_liststyle = 3
-
-" Open netrw in previous windows
-let g:netrw_browse_split = 4
-
-" Open netrw in vertical split
-let g:netrw_altv = 1
 
 " Open find files
 map <C-p> <Esc>:find 
@@ -107,6 +92,7 @@ autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 autocmd FileType js setlocal shiftwidth=2 tabstop=2
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 autocmd FileType yml setlocal shiftwidth=2 tabstop=2
+autocmd FileType json setlocal shiftwidth=2 tabstop=2
 
 " Disable sintax highlight
 syntax off
@@ -120,15 +106,35 @@ set background=light
 " Show line numbers
 set nu
 
+" Automatically write content of buffer when calling :make or something
+set autowrite
+set autoread
+
 " Show listchars
 set list
 set listchars=eol:$
 set listchars+=tab:..
 
-" vim-go customs
-map <C-x> :GoTestFunc<CR>
-map <C-b> :GoTest<CR>
-map <C-d> <Esc>:!go doc 
+" NERDTree customs
+map <C-e> <Esc>:NERDTreeToggle<CR>
 
 command! MakeTags !ctags -R .
 command! FixWhitespace :%s/\s\+$//e
+
+command! GoImports execute ":silent !goimports -w %" | execute ":redraw!"
+map <F5> :GoImports<CR>
+
+" vim-go customs
+" map <C-d> :GoDoc 
+" map <C-t> :GoTest 
+" let g:go_list_type="quickfix"
+" let g:go_test_timeout="10s"
+" let g:go_fmt_command="goimports"
+" let g:go_fmt_autosave = 1
+
+" Ultisnippets
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"let g:UltiSnipsEditSplit="vertical"
+"let g:UltiSnipsSnippetDirectories = ['.vim/UltiSnips', 'UltiSnips']
