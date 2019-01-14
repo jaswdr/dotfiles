@@ -4,9 +4,12 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'wakatime/vim-wakatime'
 Plugin 'scrooloose/nerdtree'
+Plugin 'albertorestifo/github.vim'
 call vundle#end()
+
+" Colorscheme
+colorscheme github
 
 " Fast scroll rendering
 set ttyfast
@@ -25,6 +28,18 @@ set nocompatible
 
 " Remove status line
 set laststatus=2
+set statusline=
+set statusline+=%#PmenuSel#
+set statusline+=%#LineNr#
+set statusline+=\ %f
+set statusline+=%=
+set statusline+=%#CursorColumn#
+set statusline+=\ %y
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}\]
+set statusline+=\ %p%%
+set statusline+=\ %l:%c
+set statusline+=\ 
 
 " Incremental auto completition
 set complete-=i
@@ -61,7 +76,8 @@ set splitbelow
 set splitright
 
 " Search recursively
-set path+=**
+" set path+=**
+set path=$PWD/**
 
 " No ignore case when searching
 set noignorecase
@@ -118,19 +134,21 @@ set listchars+=tab:..
 " NERDTree customs
 map <C-e> <Esc>:NERDTreeToggle<CR>
 
-command! MakeTags !ctags -R .
+command! MakeTags !ctags -R --exclude=*.json,*.js,*.pyc,*.log .
 command! FixWhitespace :%s/\s\+$//e
-
 command! GoImports execute ":silent !goimports -w %" | execute ":redraw!"
+command! GoTest !docker-compose exec app go test -failfast ./...
+command! KernelSetup :set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
+command! YamlSetup :tabstop=2 shiftwidth=2 expandtab
+
 map <F5> :GoImports<CR>
+map <C-t> :GoTest<CR>
 
 " vim-go customs
-" map <C-d> :GoDoc 
-" map <C-t> :GoTest 
-" let g:go_list_type="quickfix"
-" let g:go_test_timeout="10s"
-" let g:go_fmt_command="goimports"
-" let g:go_fmt_autosave = 1
+"let g:go_list_type="quickfix"
+"let g:go_test_timeout="10s"
+"let g:go_fmt_command="goimports"
+"let g:go_fmt_autosave = 1
 
 " Ultisnippets
 "let g:UltiSnipsExpandTrigger="<tab>"
@@ -138,3 +156,6 @@ map <F5> :GoImports<CR>
 "let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 "let g:UltiSnipsEditSplit="vertical"
 "let g:UltiSnipsSnippetDirectories = ['.vim/UltiSnips', 'UltiSnips']
+
+" Highlight
+" highlight NonText ctermfg=LightGray

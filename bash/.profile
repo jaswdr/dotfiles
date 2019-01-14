@@ -2,24 +2,24 @@
 export SYSTEMD_PAGER=
 
 # User specific aliases and functions
-#export PS1="[\W] \\$ \[$(tput sgr0)\]"
+export PS1="> "
 
 # Environment variables
 export SRC_PATH=/home/jaswdr
 export GOPATH=$SRC_PATH
-export PATH=$PATH:$SRC_PATH/go/bin:$GOPATH/bin
+export GO111MODULE=on
+export PATH=$PATH:$SRC_PATH/go/bin:$GOPATH/bin:$HOME/.local/bin
 export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(vim {})+abort'"
+export SLACK_TOKEN=''
 
 export EDITOR=vim
 alias vi=vim
 
 # User specific aliases and functions
 alias docker="sudo docker"
-alias src="cd $SRC_PATH"
 alias dk="docker"
-alias gosrc="cd $GOPATH/src/github.com/"
-alias gd="go doc"
-alias godoc="go doc"
+alias kb="kubectl"
+alias plantuml="java -jar ~/plantuml/plantuml.jar"
 
 # Run new docker container with common binds
 function dkr()
@@ -35,6 +35,18 @@ function dkr()
         -v="/dev:/dev" \
         -v="$HOME/.ssh:/root/.ssh:ro" \
         "$@"
+}
+
+# HG clone
+function hgc()
+{
+    hg clone ssh://hg@bitbucket.org/$1
+}
+
+# Git clone
+function gitc()
+{
+    git clone ssh://git@github.com/$1.git
 }
 
 # Shot docker-compose alias checking if the yaml is in the current directory or in a sub directory named docker
@@ -64,6 +76,19 @@ function rdkc()
 function dip()
 {
     docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $1
+}
+
+# Open browser at the container address
+# Usage: dip <container_id>
+function dib()
+{
+    xdg-open $(dip $1)
+}
+
+# Open browser at the container address
+# Usage: dob <container_id>
+function dob() {
+    xdg-open http://$(dkc exec $1 awk 'END{print $1}' /etc/hosts)
 }
 
 # Run bash inside new container
