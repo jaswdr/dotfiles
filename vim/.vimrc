@@ -5,11 +5,11 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'scrooloose/nerdtree'
-Plugin 'albertorestifo/github.vim'
+Plugin 'fatih/vim-go'
+"Plugin 'albertorestifo/github.vim'
 call vundle#end()
 
-" Colorscheme
-colorscheme github
+"colorscheme github
 
 " Fast scroll rendering
 set ttyfast
@@ -18,7 +18,7 @@ set ttyfast
 set backspace=indent,eol,start
 
 " Allow copy to clipboard with CTRL+SHIFT+C
-set clipboard=unnamedplus
+"set clipboard=unnamedplus
 
 " Disable swap files
 set noswapfile
@@ -131,24 +131,40 @@ set list
 set listchars=eol:$
 set listchars+=tab:..
 
+" ripgrep
+" set grepprg=rg\ --vimgrep
+" map <C-n> <Esc>:cnext<CR>
+" map <C-i> <Esc>:cprevious<CR>
+
 " NERDTree customs
 map <C-e> <Esc>:NERDTreeToggle<CR>
+"let g:netrw_banner = 0
+"let g:netrw_liststyle = 3
+"let g:netrw_browse_split = 4
+"let g:netrw_altv = 1
+"let g:netrw_winsize = 45
+"map <C-e> <Esc>:Sexplore<CR>
 
+" General fixes
 command! MakeTags !ctags -R --exclude=*.json,*.js,*.pyc,*.log .
 command! FixWhitespace :%s/\s\+$//e
-command! GoImports execute ":silent !goimports -w %" | execute ":redraw!"
-command! GoTest !docker-compose exec app go test -failfast ./...
+
+" Golang
+"command! GoImports execute ":silent !goimports -w %" | execute ":redraw!"
+"command! GoTest !docker-compose exec app go test -failfast ./...
+
+" Setups per project
 command! KernelSetup :set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
 command! YamlSetup :tabstop=2 shiftwidth=2 expandtab
 
 map <F5> :GoImports<CR>
-map <C-t> :GoTest<CR>
+map <C-t> :terminal<CR>
 
 " vim-go customs
-"let g:go_list_type="quickfix"
-"let g:go_test_timeout="10s"
-"let g:go_fmt_command="goimports"
-"let g:go_fmt_autosave = 1
+let g:go_list_type="quickfix"
+let g:go_test_timeout="10s"
+let g:go_fmt_command="gofmt"
+let g:go_fmt_autosave = 1
 
 " Ultisnippets
 "let g:UltiSnipsExpandTrigger="<tab>"
@@ -159,3 +175,9 @@ map <C-t> :GoTest<CR>
 
 " Highlight
 " highlight NonText ctermfg=LightGray
+
+" Folding
+set foldmethod=indent   
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
