@@ -8,7 +8,7 @@ export PS1="> "
 export SRC_PATH=/home/jaswdr
 export GOPATH=$SRC_PATH
 export GO111MODULE=on
-export PATH=$PATH:$SRC_PATH/go/bin:$GOPATH/bin:$HOME/.local/bin
+export PATH=$PATH:$SRC_PATH/go/bin:$GOPATH/bin:$HOME/.local/bin:$HOME/.cargo/bin
 export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(vim {})+abort'"
 export SLACK_TOKEN=''
 
@@ -124,26 +124,15 @@ function replace() {
     sed -i -e "s/$1/$2/g" $(find . -type f)
 }
 
-# Edit all modified files
-# Usage: ediff
-function ediff() {
-    vim -p `git status --porcelain | sed -ne 's/^ M //p'`
-}
-
-# Search and edit all files
-# Usage: efind foo*.bar
-function efind() {
-    find . -name $1 -exec vim {} +
-}
-
-# Search content and edit all files
-# Usage: eegrep func main()
-function eegrep() {
-    vim $(grep -rIl $1)
+# Simple http server anywhere
+function httpserver() {
+    python -m SimpleHTTPServer 8080
 }
 
 # Run new Jupyter notebook using current directory as workdir
 # Usage: jupyter
 jupyter() {
-    docker run -v $PWD:/tmp/working -w=/tmp/working -p 8888:8888 --rm -it kaggle/python jupyter notebook --no-browser --allow-root --ip="0.0.0.0" --notebook-dir=/tmp/working
+    docker run -v $PWD:/tmp/working -w=/tmp/working -p 8888:8888 --rm -it kaggle/python jupyter notebook --no-browser --allow-root --ip="localhost" --notebook-dir=/tmp/working
 }
+
+export PATH="$HOME/.cargo/bin:$PATH"
