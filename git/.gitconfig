@@ -1,0 +1,8 @@
+[user]
+	email = jonathanschweder@gmail.com
+	name = Jonathan Schweder
+	signingkey = FB873E292D5E43F5
+[core]
+	editor = vim
+[merge]
+	tool = vimdiff
