@@ -5,7 +5,7 @@ export SYSTEMD_PAGER=
 export PS1="> "
 
 # Environment variables
-export SRC_PATH=/home/jaswdr
+export SRC_PATH=/home/jaswdr/Source
 export GOPATH=$SRC_PATH
 export GO111MODULE=on
 export PATH=$PATH:$SRC_PATH/go/bin:$GOPATH/bin:$HOME/.local/bin:$HOME/.cargo/bin
@@ -134,5 +134,3 @@ function httpserver() {
 jupyter() {
     docker run -v $PWD:/tmp/working -w=/tmp/working -p 8888:8888 --rm -it kaggle/python jupyter notebook --no-browser --allow-root --ip="localhost" --notebook-dir=/tmp/working
 }
-
-export PATH="$HOME/.cargo/bin:$PATH"
