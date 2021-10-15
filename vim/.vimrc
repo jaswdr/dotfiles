@@ -16,11 +16,11 @@ call vundle#end()
 filetype plugin indent on
 
 colorscheme gruvbox
-hi Search ctermbg=DarkBlue
-highlight NonText ctermfg=DarkGray
+hi Search ctermbg=LightBlue
+highlight NonText ctermfg=LightGray
 set autoread
 set autowrite
-set background=dark
+set background=light
 set backspace=indent,eol,start
 set complete-=i
 set cursorline
@@ -30,7 +30,6 @@ set foldenable
 set foldmethod=indent   
 set hidden
 set hlsearch
-set ignorecase
 set incsearch
 set laststatus=2
 set lazyredraw
@@ -42,7 +41,7 @@ set nobackup
 set nocompatible
 set noswapfile
 set nowritebackup
-set nu
+set nu rnu
 set path=$PWD/**
 set shiftwidth=4
 set shortmess+=c
@@ -58,10 +57,16 @@ syntax on
 "" COMMANDS
 command! Tags !ctags -R --exclude=*.json,*.js,*.pyc,*.log .
 command! FixWhitespace :%s/\s\+$//e
+"autocmd FileType c call tagbar#autoopen(0)
+"autocmd FileType python call tagbar#autoopen(0)
 
 " Open find files
 map <C-f> <Esc>:FZF<CR> 
 map <C-g> <Esc>:Rg 
+
+" Use C+N and C+I to go between tags
+map <C-n> <Esc>:cnext<CR>
+map <C-i> <Esc>:cprevious<CR>
 
 " Use CTRL + TAB to change between tabs
 nmap <C-t> :tab split<CR>
@@ -69,10 +74,10 @@ nmap <C-q> :tabprevious<CR>
 nmap <C-w> :tabnext<CR>
 
 " CTRL + HJKL
-nmap <C-k> :wincmd k<CR>
-nmap <C-j> :wincmd j<CR>
-nmap <C-h> :wincmd h<CR>
-nmap <C-l> :wincmd l<CR>
+map <C-k> :wincmd k<CR>
+map <C-j> :wincmd j<CR>
+map <C-h> :wincmd h<CR>
+map <C-l> :wincmd l<CR>
 
 " Moving in terminal window
 tmap <C-k> <C-w>k
@@ -83,15 +88,12 @@ tmap <C-l> <C-w>l
 " Setups per project
 command! SetupKernel :set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
 command! SetupYaml :tabstop=2 shiftwidth=2 expandtab
-autocmd FileType c call tagbar#autoopen(0)
-autocmd FileType python call tagbar#autoopen(0)
 
 "" EXTENSIONS
 
 " Ripgrep
 set grepprg=rg\ --vimgrep
-map <C-n> <Esc>:cnext<CR>
-map <C-i> <Esc>:cprevious<CR>
+let g:rg_binary='/home/jaswdr/.cargo/bin/rg'
 
 " NERDTree
 map <C-e> <Esc>:NERDTreeToggle<CR>
