@@ -6,18 +6,16 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdtree'
-Plugin 'morhetz/gruvbox'
 Plugin 'junegunn/fzf'
 Plugin 'jremmen/vim-ripgrep'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'preservim/tagbar'
+Plugin 'flazz/vim-colorschemes'
 call vundle#end()
 
 filetype plugin indent on
 
-colorscheme gruvbox
-hi Search ctermbg=LightBlue
-highlight NonText ctermfg=LightGray
+colorscheme github
 set autoread
 set autowrite
 set background=light
@@ -93,7 +91,7 @@ command! SetupYaml :tabstop=2 shiftwidth=2 expandtab
 
 " Ripgrep
 set grepprg=rg\ --vimgrep
-let g:rg_binary='/home/jaswdr/.cargo/bin/rg'
+let g:rg_binary='$HOME/.cargo/bin/rg'
 
 " NERDTree
 map <C-e> <Esc>:NERDTreeToggle<CR>

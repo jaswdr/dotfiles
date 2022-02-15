@@ -1,8 +1,15 @@
 [user]
 	email = jonathanschweder@gmail.com
 	name = Jonathan Schweder
-	signingkey = FB873E292D5E43F5
 [core]
-	editor = vim
+	editor = code --wait
+[diff]
+	algorithm = histogram
+	wordRegex = [\w]+
+	minimal = true
+	textconv = diff --textconv
+	cmd = code --wait --diff $LOCAL $REMOTE
 [merge]
-	tool = vimdiff
+	tool = vscode
+[mergetool "vscode"]
+	cmd = code --wait --diff $MERGED
