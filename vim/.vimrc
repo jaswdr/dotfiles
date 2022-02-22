@@ -55,8 +55,6 @@ syntax on
 "" COMMANDS
 command! Tags !ctags -R --exclude=*.json,*.js,*.pyc,*.log .
 command! FixWhitespace :%s/\s\+$//e
-"autocmd FileType c call tagbar#autoopen(0)
-"autocmd FileType python call tagbar#autoopen(0)
 
 " Open find files
 map <C-f> <Esc>:FZF<CR> 
