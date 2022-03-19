@@ -1,15 +1,26 @@
 [user]
 	email = jonathanschweder@gmail.com
 	name = Jonathan Schweder
+[color]
+	ui = auto
 [core]
-	editor = code --wait
-[diff]
-	algorithm = histogram
-	wordRegex = [\w]+
-	minimal = true
-	textconv = diff --textconv
-	cmd = code --wait --diff $LOCAL $REMOTE
+	pager = less -FMRiX
+	excludesfile = /home/jaswdr/.config/git/excludes
+[push]
+	default = simple
+[alias]
+	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%ar%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+    l = log --format=oneline
+    g = grep
+    s = status
+    c = commit
+    d = diff
+    ds = diff --staged
 [merge]
-	tool = vscode
-[mergetool "vscode"]
-	cmd = code --wait --diff $MERGED
+	tool = vimdiff
+[mergetool "vimdiff"]
+	trustExitCode = true
+[pull]
+	ff = only
+[mergetool]
+	keepBackup = false
