@@ -96,3 +96,8 @@ let g:rg_binary='/local/home/jaswdr/.cargo/bin/rg'
 " NERDTree
 map <C-e> <Esc>:NERDTreeToggle<CR>
 let g:NERDTreeWinSize=50
+
+" Vim-Go
+
+" Disable default stack mapping and rely on RipGrep instead
+let g:go_def_mapping_enabled = 0
