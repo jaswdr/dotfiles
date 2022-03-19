@@ -3,14 +3,16 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim 
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'jremmen/vim-ripgrep'
-Plugin 'junegunn/fzf'
-Plugin 'preservim/tagbar'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdtree'
+Plugin 'junegunn/fzf'
+Plugin 'jremmen/vim-ripgrep'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'preservim/tagbar'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'fatih/vim-go'
 call vundle#end()
 
 filetype plugin indent on
@@ -50,25 +52,21 @@ set wildmenu
 syntax on
 
 "" COMMANDS
-command! SetupKernel :set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
-command! SetupYaml :tabstop=2 shiftwidth=2 expandtab
-
-" examples
 "command! Tags !ctags -R --exclude=*.json,*.js,*.pyc,*.log .
 "command! FixWhitespace :%s/\s\+$//e
 "autocmd FileType c call tagbar#autoopen(0)
 "autocmd FileType python call tagbar#autoopen(0)
 
-" FIND FILES OR FIND CONTENT
+" Open find files
 map <C-f> <Esc>:FZF<CR> 
 map <C-g> <Esc>:Rg 
 
-" TAGS NAVIGATION
+" Use C+N and C+I to go between tags
 map <C-d> <Esc>:tnext<CR>
 map <C-s> <Esc>:tag 
 map <C-a> <Esc>:tprevious<CR>
 
-" TABS NAVIGATION
+" Use CTRL + TAB to change between tabs
 nmap <C-t> :tab split<CR>
 nmap <C-q> :tabprevious<CR>
 nmap <C-w> :tabnext<CR>
@@ -79,18 +77,22 @@ map <C-j> :wincmd j<CR>
 map <C-h> :wincmd h<CR>
 map <C-l> :wincmd l<CR>
 
-" INTEGRATE WITH TERMINAL
+" Moving in terminal window
 tmap <C-k> <C-w>k
 tmap <C-j> <C-w>j
 tmap <C-h> <C-w>h
 tmap <C-l> <C-w>l
 
+" Setups per project
+command! SetupKernel :set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
+command! SetupYaml :tabstop=2 shiftwidth=2 expandtab
+
 "" EXTENSIONS
 
-" RIPGREP
+" Ripgrep
 set grepprg=rg\ --vimgrep\ --exclude=.git\ --exclude=tags\ --exclude=node_modules/*
-let g:rg_binary='/home/jaswdr/.cargo/bin/rg'
+let g:rg_binary='/local/home/jaswdr/.cargo/bin/rg'
 
-" NERDTREE
+" NERDTree
 map <C-e> <Esc>:NERDTreeToggle<CR>
 let g:NERDTreeWinSize=50
