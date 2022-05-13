@@ -3,21 +3,20 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim 
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'fatih/vim-go'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'jremmen/vim-ripgrep'
+Plugin 'junegunn/fzf'
+Plugin 'preservim/tagbar'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdtree'
-Plugin 'junegunn/fzf'
-Plugin 'jremmen/vim-ripgrep'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'preservim/tagbar'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'fatih/vim-go'
 call vundle#end()
 
 filetype plugin indent on
 
-colorscheme solarized
+colorscheme molokai
 set autoread
 set autowrite
 set background=dark
