@@ -51,8 +51,6 @@ set wildmenu
 syntax on
 
 "" COMMANDS
-"command! Tags !ctags -R --exclude=*.json,*.js,*.pyc,*.log .
-"command! FixWhitespace :%s/\s\+$//e
 "autocmd FileType c call tagbar#autoopen(0)
 "autocmd FileType python call tagbar#autoopen(0)
 
@@ -81,10 +79,6 @@ tmap <C-k> <C-w>k
 tmap <C-j> <C-w>j
 tmap <C-h> <C-w>h
 tmap <C-l> <C-w>l
-
-" Setups per project
-command! SetupKernel :set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
-command! SetupYaml :tabstop=2 shiftwidth=2 expandtab
 
 "" EXTENSIONS
 
