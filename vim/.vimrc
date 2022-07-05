@@ -16,7 +16,7 @@ call vundle#end()
 
 filetype plugin indent on
 
-colorscheme molokai
+colorscheme solarized
 set autoread
 set autowrite
 set background=dark
